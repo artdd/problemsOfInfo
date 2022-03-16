@@ -8,7 +8,7 @@
         <input v-bind:value="surname" @input="surname = $event.target.value"  type="text" name="surname" class="sign-up__input" placeholder="Фамилия"/>
         <input v-bind:value="email" @input="email = $event.target.value" type="text" name="email" class="sign-up__input" placeholder="Электронная почта"/>
         <input v-bind:value="password" @input="password = $event.target.value"  type="password" name="password" class="sign-up__input" placeholder="Пароль"/>
-        <button @click="createUser" class="sign-up__button">Зарегистрироваться2</button>
+        <button @click="createUser" class="sign-up__button">Зарегистрироваться</button>
       </form>
     </div>
   </div>

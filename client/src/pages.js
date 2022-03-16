@@ -5,6 +5,8 @@ import ForAutors from './components/ForAutors.vue'
 import aboutMagazine from './components/AboutMagazine.vue'
 import LogIn from './components/LogIn.vue'
 import SignUp from './components/SignUp.vue'
+import MyProfileScreen from './components/MyProfileScreen.vue'
+import EditProfileScreen from './components/EditProfileScreen'
 
 const routes = [
     { path: '/contacts', component: Contacts, props: true },
@@ -13,7 +15,9 @@ const routes = [
     { path: '/aboutmagazine', component: aboutMagazine, name:'aboutMagazine', props: true },
     { path: '/', component: HomeScreen, props: true },
     { path: '/LogIn', component: LogIn, props: true },
-    { path: '/SignUp', component: SignUp, props: true }
+    { path: '/SignUp', component: SignUp, props: true },
+    { path: '/MyProfileScreen', component: MyProfileScreen, props: true },
+    { path: '/EditProfileScreen', component: EditProfileScreen, props: true }
   ]
 
  export default routes;

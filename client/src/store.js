@@ -7,7 +7,19 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state(){
     return{
-      lang: 'EN'
+      lang: 'EN',
+      user: {
+        name: '',
+        surname: '',
+        patronymic: '',
+        email: '',
+        password: '',
+        educationPlace: '',
+        educationKey: '',
+        placeOfWork: '',
+        workPosition: '',
+        academicDegree: ''
+      }
     }
   },
   mutations: {

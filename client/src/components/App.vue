@@ -24,12 +24,13 @@
             @click="changeLangItem"
             v-text="lang">
           </li>
-          <li class="user-logo" @mouseover="flag=true"><ProfileIcon /></li>
+          <li class="user-logo" @mouseover="flag=true">
+          <router-link class="navigation__item_text" to="/MyProfileScreen"><ProfileIcon /></router-link>
+          </li>
         </ul>
       </nav>
       <div @mouseleave="toggleFlag"><Authorization v-if="flag"/></div>
     </div>
-    <ProfileScreen />
     <router-view></router-view>
   </div>
 </template>
@@ -37,15 +38,13 @@
 <script>
 import ProfileIcon from '../components/ProfileIcon.vue'
 import Authorization from '../components/Authorization.vue'
-import ProfileScreen from './ProfileScreen.vue'
 import store from '../store.js'
 
 export default {
   name: 'App',
   components: {
     ProfileIcon,
-    Authorization,
-    ProfileScreen
+    Authorization
   },
   data() {
     return {

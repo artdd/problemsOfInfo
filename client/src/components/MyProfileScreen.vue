@@ -1,52 +1,49 @@
 <template>
 <div>
   <div class="profile">
-    <div class="profile__menu">
-      <div class="profile__menu_item">Мой профиль</div>
-      <div class="profile__menu_item">Мои статьи</div>
-      <div class="profile__menu_item">Редактировать профиль</div>
+    <div class="menu">
+      <div class="menu__item menu__item_checked">Мой профиль</div>
+      <div class="menu__item">Мои статьи</div>
+      <router-link class="menu__item" to="/EditProfileScreen">Редактировать профиль</router-link>
     </div>
     <div class="profile__container">
       <div class="profile__avatar-and-data">
-        <div class="profile__avatar">
-        <img src="../assets/img/author.png">
-      </div>
-      <div class="profile__main-data">
-        <input class="profile__input" placeholder="Имя"/>
-        <input class="profile__input" placeholder="Фамилия"/>
-        <input class="profile__input" placeholder="Отчество"/>
-      </div>
-      </div>
-      <div class="profile__data">
-        <input class="profile__input" placeholder="Электронная почта"/>
-        <input class="profile__input" placeholder="Пароль"/>
+        <img class="profile__avatar" src="../assets/img/default-user.jpg">
+        <div class="profile__main-data">
+          <div class="profile__input">{{ user.name }}</div>
+          <div class="profile__input">{{ user.surname }}</div>
+          <div class="profile__input">{{ user.patronymic }}</div>
+        </div>
       </div>
       <div class="profile__subtitle">Образование</div>
       <div class="profile__education">
-        <input class="profile__input profile__input_long" placeholder="Наименование учреждения"/>
-         <input class="profile__input profile__input_long" placeholder="Код специальности"/>
+        <div class="profile__input">{{ user.educationPlace }}</div>
+        <div class="profile__input">{{ user.educationKey }}</div>
       </div>
       <div class="profile__subtitle">Работа</div>
       <div class="profile__education">
-        <input class="profile__input profile__input_long" placeholder="Место работы"/>
-         <input class="profile__input profile__input_long" placeholder="Должность"/>
-        <input class="profile__input profile__input_long" placeholder="Ученая степень"/>
-        <button class="profile__button">Подтвердить</button>
+        <div class="profile__input">{{ user.placeOfWork }}</div>
+        <div class="profile__input">{{ user.workPosition }}</div>
+        <div class="profile__input">{{ user.academicDegree }}</div>
       </div>
     </div>
   </div>
   <Footer />
 </div>
-  
 </template>
 
 <script>
 import Footer from './Footer.vue'
 
 export default {
-  name: 'ProfileScreen',
+  name: 'MyEditProfileScreen',
   components: {
     Footer
+  },
+  computed: {
+      user() {
+          return this.$store.state.user
+      }
   }
 }
 </script>
@@ -77,19 +74,20 @@ export default {
   } 
   &__data {
     display: flex;
-    margin-top: 70px;
+    margin-top: 16px;
     justify-content: space-between;
   }
   &__avatar {
     width: 200px;
     height: 200px;
     .nice-shadow();
+    border-radius: 32px;
   }
   &__container {
-    padding: 30px 30px 30px 60px;
+    padding: 30px 30px 30px 0;
     display: flex;
     flex-direction: column;
-    margin-left: 15%;
+    margin-left: 10%;
   }
   &__input {
       text-align: center;
@@ -100,6 +98,11 @@ export default {
       height: 25px;
       padding: 8px;
       border-radius: 8px;
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
       .nice-shadow();
       &_long {
         width: 300px;
@@ -116,26 +119,45 @@ export default {
       background-color: rgba(1, 68, 97,0.8);
       color: @utility-white;
   }
-  &__menu {
+  &__main-data {
+    display: flex;
+    flex-direction: column;
+    margin-left: 45px;
+  }
+}
+
+.edit-photo {
+  .subtitle-big-bold();
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
+  color: @text-grey;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-left: 48px;
+}
+
+.menu {
     width: 200px;
+    margin-left: 100px;
     height: 100%;
     display: flex;
     margin-top: 30px;
     background-color: @dark-text-secondary;
     flex-direction: column;
-    &_item {
+    &__item {
       border: 1px solid @utility-border;
       padding: 8px 8px 14px;
-      background-color: rgba(1, 68, 97,0.8);
+      background-color: rgba(1, 68, 97,0.7);
       color: @utility-white;
+      text-decoration: none;
       cursor:pointer;
+      &:hover {
+        background-color: rgba(1, 68, 97);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
+      } 
+      &_checked {
+      background-color: rgba(1, 68, 97);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
+    }
     }
   }
-  &__main-data {
-    display: flex;
-    flex-direction: column;
-    margin-left: 120px;
-  }
-}
 </style>
-

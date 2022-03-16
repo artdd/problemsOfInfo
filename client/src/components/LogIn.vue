@@ -6,13 +6,13 @@
           Войти в аккаунт
         </div>
       </div>
-      <form @submit.prevent="formSubmit">
-      <input class="log-in__input" type="email" placeholder="Электронная почта"  v-model="form.email">
-      <input class="log-in__input" type="password" placeholder="Пароль"  v-model="form.password">
+      <form @submit.prevent="formSubmit" class="log-in__form">
+        <input class="log-in__input" type="email" placeholder="Электронная почта"  v-model="form.email">
+        <input class="log-in__input" type="password" placeholder="Пароль"  v-model="form.password">
         <div>
           <button type="submit"  @click="SignIn"  class="log-in__button">Войти</button>
         </div>
-          </form>
+      </form>
       </div>
     </div>
 
@@ -61,6 +61,12 @@ export default {
   font-family: Roboto;
 }
 .log-in {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   &__container{
   display: flex;
   flex-direction: column;
