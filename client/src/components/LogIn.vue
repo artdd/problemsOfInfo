@@ -6,48 +6,42 @@
           Войти в аккаунт
         </div>
       </div>
-      <form @submit.prevent="formSubmit" class="log-in__form">
-        <input class="log-in__input" type="email" placeholder="Электронная почта"  v-model="form.email">
-        <input class="log-in__input" type="password" placeholder="Пароль"  v-model="form.password">
+     <!-- <form class="log-in__form" @submit.prevent> -->
+      <input class="log-in__input" type="email" placeholder="Электронная почта"  @input="email = $event.target.value">
+      <input class="log-in__input" type="password" placeholder="Пароль" @input="password = $event.target.value">
         <div>
-          <button type="submit"  @click="SignIn"  class="log-in__button">Войти</button>
+          <button @click="SignIn" to="/ProfileScreen" class="log-in__button">Войти</button>
         </div>
-      </form>
+          <!-- </form> -->
       </div>
     </div>
-
 </template>
 
 <script>
+import {auth} from "@/api/authAPI"
 export default {
-  name: 'LogIn',
+   name: 'Login',
    data(){
     return {
       form:{
-        email: '',
-        password: ''
+        email: "",
+        password: ""
       },
-      errors:[]
     }
   },
   methods: {
-    async SignIn() {
-     const res = await fetch('http://localhost:4000/auth',{
-        method:'POST',
-        headers:{
-          'Content-Type': 'application/json'
-        },
-        credentials:'include',
-        body: JSON.stringify({
-          email: this.form.email,
-          password: this.form.password
-        })
+    SignIn() {
+     auth(this.email,this.password).then((response)=>{
+        console.log(response.data)
+        if (response.data){
+          window.location.href = 'http://localhost:8080/#/EditProfileScreen';
+         
+        }
       })
-      console.log(res)
-    },
+      
   }
 }
-  
+} 
 </script>
 
 <style lang="less" scoped>

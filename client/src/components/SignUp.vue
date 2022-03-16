@@ -17,6 +17,7 @@
 <script>
 import {addUser} from "@/api/userAPI";
 export default {
+  name: 'SignUp',
   data(){
     return{
       user:{
@@ -31,12 +32,11 @@ export default {
     createUser(){
       addUser(this.name,this.surname,this.email,this.password).then((response)=>{
         console.log(response.data)
+        
       })
-
     }
-  }
- 
-}
+
+}}
 </script>
 
 <style lang="less" scoped>
