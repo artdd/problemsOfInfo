@@ -17,6 +17,14 @@ export default class Author {
 
   @Column()
   @Length(4, 300)
+  name: string;
+
+  @Column()
+  @Length(4, 300)
+  surname: string;
+
+  @Column()
+  @Length(4, 300)
   patronymic: string;
 
   @Column()

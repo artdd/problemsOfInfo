@@ -32,7 +32,9 @@ export default {
     createUser(){
       addUser(this.name,this.surname,this.email,this.password).then((response)=>{
         console.log(response.data)
-        
+        if (response.data){
+          window.location.href = 'http://localhost:8080/#/LogIn';
+        }
       })
     }
 

@@ -13,25 +13,71 @@
           <div class="edit-photo">Изменить аватар</div>
         </div>
         <div class="profile__main-data">
-          <input class="profile__input" v-model="user.name" placeholder="Имя"/>
-          <input class="profile__input" v-model="user.surname" placeholder="Фамилия"/>
-          <input class="profile__input" v-model="user.patronymic" placeholder="Отчество"/>
+          <input
+            class="profile__input"
+            placeholder="Имя"
+            @input="name = $event.target.value"
+          />
+          <input
+            class="profile__input"
+            placeholder="Фамилия"
+            @input="surname = $event.target.value"
+          />
+          <input
+            class="profile__input"
+            placeholder="Отчество"
+            @input="patronymic = $event.target.value"
+          />
         </div>
-      </div>
-      <div class="profile__data">
-        <input class="profile__input" v-model="user.email" placeholder="Электронная почта"/>
-        <input class="profile__input" v-model="user.password" placeholder="Пароль"/>
       </div>
       <div class="profile__subtitle">Образование</div>
       <div class="profile__education">
-        <input class="profile__input profile__input_long" v-model="user.educationPlace" placeholder="Наименование учреждения"/>
-         <input class="profile__input profile__input_long" v-model="user.educationKey" placeholder="Код специальности"/>
+        <input
+          class="profile__input profile__input_long"
+          placeholder="Наименование учреждения"
+          @input="education = $event.target.value"  
+        />
+         <input
+            class="profile__input profile__input_long"
+            placeholder="Код специальности"
+            @input="specialityCode = $event.target.value"
+          />
+      </div>
+      <div class="profile__subtitle">Адрес</div>
+      <div class="profile__data">
+        <input
+          class="profile__input profile__input_long"
+          placeholder="Город"
+          @input="city = $event.target.value"
+          />
+        <input
+          class="profile__input profile__input_long"
+          placeholder="Адрес"
+          @input="adress = $event.target.value"
+        />
+        <input
+          class="profile__input profile__input_long"
+          placeholder="Почтовый индекс"
+          @input="posteCode = $event.target.value"  
+        />
       </div>
       <div class="profile__subtitle">Работа</div>
       <div class="profile__education">
-        <input class="profile__input profile__input_long" v-model="user.placeOfWork" placeholder="Место работы"/>
-         <input class="profile__input profile__input_long" v-model="user.workPosition" placeholder="Должность"/>
-        <input class="profile__input profile__input_long" v-model="user.academicDegree" placeholder="Ученая степень"/>
+        <input
+          class="profile__input profile__input_long"
+          placeholder="Место работы"
+          @input="work = $event.target.value"   
+        />
+        <input
+          class="profile__input profile__input_long"
+          placeholder="Должность"
+          @input="position = $event.target.value" 
+        />
+        <input
+          class="profile__input profile__input_long"
+          placeholder="Ученая степень"
+          @input="academicDegree = $event.target.value" 
+        />
         <button class="profile__button" @click="editUser" >Подтвердить</button>
       </div>
     </div>
@@ -43,6 +89,7 @@
 
 <script>
 import Footer from './Footer.vue'
+import {addAuthor} from "@/api/authorAPI"
 
 export default {
   name: 'EditProfileScreen',
@@ -51,26 +98,41 @@ export default {
   },
   data: function() {
     return {
-      user: {
+      author: {
         name: '',
         surname: '',
         patronymic: '',
-        email: '',
-        password: '',
-        educationPlace: '',
-        educationKey: '',
-        placeOfWork: '',
-        workPosition: '',
+        city: '',
+        adress: '',
+        posteCode: '',
+        education: '',
+        specialityCode: '',
+        work: '',
+        position: '',
         academicDegree: ''
       }
     }
   },
   methods: {
      editUser() {
-      this.$store.commit('set', {
-        user: this.user
-      }),
-      console.log(this.user)
+     addAuthor(
+       this.name,
+       this.surname,
+       this.patronymic,
+       this.city,
+       this.adress,
+       this.postecode,
+       this.education,
+       this.specialityCode,
+       this.work,
+       this.position,
+       this.academicDegree
+        ).then((response)=>{
+        console.log(response.data)
+        if (response.data){
+          window.location.href = 'http://localhost:8080/#/MyProfileScreen';
+        }
+      })
     }
   }
 }
@@ -104,6 +166,8 @@ export default {
     display: flex;
     margin-top: 16px;
     justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
   }
   &__avatar {
     width: 200px;
