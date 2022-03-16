@@ -14,7 +14,7 @@ class Server {
   }
 
   private config() {
-    //this.app.use(cors({origin:'https://192.168.1.70:8080/', credentials:true,}));
+    //this.app.use(cors({origin:'https://192.168.1.90:8080/', credentials:true,}));
     this.app.use(helmet());
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json({ limit: '1mb' }));
@@ -29,8 +29,8 @@ class Server {
     useExpressServer(this.app, {
       defaultErrorHandler: false,
       cors: {
-        origin:'http://192.168.1.70:8080',
-        credentials:true,            //access-control-allow-credentials:true
+        origin: 'http://localhost:8080',
+        credentials: true, //access-control-allow-credentials:true
       },
       controllers: [UserController, AuthController],
     });

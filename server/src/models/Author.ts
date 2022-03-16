@@ -17,26 +17,46 @@ export default class Author {
 
   @Column()
   @Length(4, 300)
-  placeOfWork: string;
-
-  @Column()
-  @Length(4, 100)
-  Position: string;
+  patronymic: string;
 
   @Column()
   @Length(4, 100)
   @IsNotEmpty()
-  udc: string;
+  city: string;
 
   @Column()
   @Length(4, 100)
   @IsNotEmpty()
-  postCode: string;
+  adress: string;
 
   @Column()
-  @Length(4, 300)
+  @Length(4, 100)
   @IsNotEmpty()
-  scientificAchievement: string;
+  posteCode: string;
+
+  @Column()
+  @Length(4, 100)
+  education: string;
+
+  @Column()
+  @Length(4, 100)
+  @IsNotEmpty()
+  specialtyCode: string;
+
+  @Column()
+  @Length(4, 100)
+  @IsNotEmpty()
+  work: string;
+
+  @Column()
+  @Length(4, 100)
+  @IsNotEmpty()
+  position: string;
+
+  @Column()
+  @Length(4, 100)
+  @IsNotEmpty()
+  academicDegree: string;
 
   @OneToMany(() => AuthorArticle, (authorArticle) => authorArticle.author, {
     onDelete: 'CASCADE',

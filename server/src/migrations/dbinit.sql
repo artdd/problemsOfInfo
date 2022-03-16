@@ -1,1 +1,1 @@
-CREATE DATABASE webMagazine
+CREATE DATABASE web

@@ -14,8 +14,8 @@ export class CheckJwt implements ExpressMiddlewareInterface {
     } catch (error) {
       return res.status(401).send('Token is invalid');
     }
-    const { userId, userPhone } = jwtPayload;
-    const newToken = jwt.sign({ userId, userPhone }, config.jwtSecret, {
+    const { userId, userEmail } = jwtPayload;
+    const newToken = jwt.sign({ userId, userEmail }, config.jwtSecret, {
       expiresIn: '730h',
     });
     res.setHeader('token', newToken);

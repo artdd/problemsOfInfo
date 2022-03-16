@@ -7,7 +7,7 @@ const initConnection = () =>
     port: 5433,
     username: 'postgres',
     password: 'admin',
-    database: 'webMagazine',
+    database: 'web',
     entities: ['./dist/src/models/*.js'],
     synchronize: true,
   });
