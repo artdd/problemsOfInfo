@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import initConnection from './utils/dbconnectors';
 import UserController from './controllers/UserController';
 import AuthController from './controllers/AuthController';
+import AuthorController from './controllers/AuthorController';
 class Server {
   private app;
   constructor() {
@@ -32,7 +33,7 @@ class Server {
         origin: 'http://localhost:8080',
         credentials: true, //access-control-allow-credentials:true
       },
-      controllers: [UserController, AuthController],
+      controllers: [UserController, AuthController, AuthorController],
     });
     return new Promise((resolve, reject) => {
       this.app
