@@ -4,10 +4,10 @@ const initConnection = () =>
   createConnection({
     type: 'postgres',
     host: 'localhost',
-    port: 5433,
+    port: 5432,
     username: 'postgres',
-    password: 'admin',
-    database: 'web',
+    password: '1234',
+    database: 'webMagazine',
     entities: ['./dist/src/models/*.js'],
     synchronize: true,
   });

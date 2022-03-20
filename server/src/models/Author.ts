@@ -77,4 +77,5 @@ export default class Author {
   })
   @JoinTable()
   user: User[];
+
 }

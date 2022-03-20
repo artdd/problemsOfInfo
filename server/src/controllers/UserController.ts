@@ -15,6 +15,8 @@ import { CheckJwt } from '../middlewares/CheckJwt';
 import User from '../models/User';
 import { USER_DEFAULT_SELECT } from '../utils/constants';
 
+
+
 @JsonController()
 export default class UserController {
   @Get('/users')
@@ -27,13 +29,13 @@ export default class UserController {
   }
 
   @Get('/users/:id')
-  @UseBefore(CheckJwt)
+  //@UseBefore(CheckJwt)
   async getOne(@Param('id') id: number, @Res() res: any) {
     const userRepository = getRepository(User);
     try {
       return await userRepository.findOneOrFail(id, {
         select: <(keyof User)[]>USER_DEFAULT_SELECT,
-        relations: ['article'],
+        //relations: ['article'],
       });
     } catch (error) {
       return res.status(404).send('User not found');
@@ -59,7 +61,7 @@ export default class UserController {
   }
 
   @Put('/users/:id')
-  @UseBefore(CheckJwt)
+  // @UseBefore(CheckJwt)
   async put(@Param('id') id: number, @Body() userData: any, @Res() res: any) {
     const userRepo = getRepository(User);
     let user;
@@ -93,4 +95,6 @@ export default class UserController {
       return res.status(404).send('User not found');
     }
   }
+
+  
 }
